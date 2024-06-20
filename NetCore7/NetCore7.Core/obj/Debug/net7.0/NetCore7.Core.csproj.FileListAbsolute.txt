@@ -1,0 +1,15 @@
+C:\Proyectos\Arquitecture\NetCore7\NetCore7\NetCore7.Core\bin\Debug\net7.0\NetCore7.Core.deps.json
+C:\Proyectos\Arquitecture\NetCore7\NetCore7\NetCore7.Core\bin\Debug\net7.0\NetCore7.Core.dll
+C:\Proyectos\Arquitecture\NetCore7\NetCore7\NetCore7.Core\bin\Debug\net7.0\NetCore7.Core.pdb
+C:\Proyectos\Arquitecture\NetCore7\NetCore7\NetCore7.Core\bin\Debug\net7.0\NetCore7.Common.dll
+C:\Proyectos\Arquitecture\NetCore7\NetCore7\NetCore7.Core\bin\Debug\net7.0\NetCore7.Common.pdb
+C:\Proyectos\Arquitecture\NetCore7\NetCore7\NetCore7.Core\obj\Debug\net7.0\NetCore7.Core.csproj.AssemblyReference.cache
+C:\Proyectos\Arquitecture\NetCore7\NetCore7\NetCore7.Core\obj\Debug\net7.0\NetCore7.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Proyectos\Arquitecture\NetCore7\NetCore7\NetCore7.Core\obj\Debug\net7.0\NetCore7.Core.AssemblyInfoInputs.cache
+C:\Proyectos\Arquitecture\NetCore7\NetCore7\NetCore7.Core\obj\Debug\net7.0\NetCore7.Core.AssemblyInfo.cs
+C:\Proyectos\Arquitecture\NetCore7\NetCore7\NetCore7.Core\obj\Debug\net7.0\NetCore7.Core.csproj.CoreCompileInputs.cache
+C:\Proyectos\Arquitecture\NetCore7\NetCore7\NetCore7.Core\obj\Debug\net7.0\NetCore7.Core.csproj.CopyComplete
+C:\Proyectos\Arquitecture\NetCore7\NetCore7\NetCore7.Core\obj\Debug\net7.0\NetCore7.Core.dll
+C:\Proyectos\Arquitecture\NetCore7\NetCore7\NetCore7.Core\obj\Debug\net7.0\refint\NetCore7.Core.dll
+C:\Proyectos\Arquitecture\NetCore7\NetCore7\NetCore7.Core\obj\Debug\net7.0\NetCore7.Core.pdb
+C:\Proyectos\Arquitecture\NetCore7\NetCore7\NetCore7.Core\obj\Debug\net7.0\ref\NetCore7.Core.dll

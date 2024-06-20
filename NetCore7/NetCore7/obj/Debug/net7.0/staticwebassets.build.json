@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "V+VyALJolzGKtrGpIqK0rUP59dVNPQSAMMy4vkLUpGU=",
+  "Source": "NetCore7.API",
+  "BasePath": "_content/NetCore7.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
