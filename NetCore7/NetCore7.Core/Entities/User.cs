@@ -1,4 +1,5 @@
 ﻿using NetCore7.Common;
+using NetCore7.Core.Entities.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,13 @@ namespace NetCore7.Core.Entities
 {
     public class User : Entity<int>
     {
+        public User()
+        {           
+            UserRoles = new HashSet<UserRoles>();
+           
+        }
+        public string FullName { get; set; }
+        public string Email { get; set; }
+        public ICollection<UserRoles> UserRoles { get; set; }
     }
 }

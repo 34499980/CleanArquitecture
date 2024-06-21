@@ -17,7 +17,7 @@ namespace NetCore7.Infrastructure.Data.Configurations
             base.Configure(builder);
 
             // Mapping for table
-            builder.ToTable("Module");
+            builder.ToTable("Modules");
 
             builder.Property(t => t.Code).HasMaxLength(50);
             builder.Property(t => t.Name).IsRequired().HasMaxLength(100);

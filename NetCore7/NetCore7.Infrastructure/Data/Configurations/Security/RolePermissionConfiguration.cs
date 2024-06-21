@@ -16,7 +16,7 @@ namespace NetCore7.Infrastructure.Data.Configurations.Security
         {           
 
             // Mapping for table
-            builder.ToTable("RolePermission");
+            builder.ToTable("RolesPermissions");
 
 
             builder.Property(t => t.RoleId).IsRequired();

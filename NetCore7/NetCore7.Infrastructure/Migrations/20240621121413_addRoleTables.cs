@@ -5,7 +5,7 @@
 namespace NetCore7.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialModel : Migration
+    public partial class addRoleTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -67,6 +67,8 @@ namespace NetCore7.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RoleId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>

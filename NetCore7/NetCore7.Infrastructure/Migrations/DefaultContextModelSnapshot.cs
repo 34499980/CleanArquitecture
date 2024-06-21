@@ -53,7 +53,7 @@ namespace NetCore7.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Module", (string)null);
+                    b.ToTable("Modules", (string)null);
                 });
 
             modelBuilder.Entity("NetCore7.Core.Entities.Security.Permission", b =>
@@ -76,7 +76,7 @@ namespace NetCore7.Infrastructure.Migrations
 
                     b.HasIndex("ModuleId");
 
-                    b.ToTable("Permission", (string)null);
+                    b.ToTable("Permissions", (string)null);
                 });
 
             modelBuilder.Entity("NetCore7.Core.Entities.Security.Role", b =>
@@ -99,7 +99,7 @@ namespace NetCore7.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Role", (string)null);
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("NetCore7.Core.Entities.Security.RolePermission", b =>
@@ -114,7 +114,27 @@ namespace NetCore7.Infrastructure.Migrations
 
                     b.HasIndex("PermissionId");
 
-                    b.ToTable("RolePermission", (string)null);
+                    b.ToTable("RolesPermissions", (string)null);
+                });
+
+            modelBuilder.Entity("NetCore7.Core.Entities.Security.UserRoles", b =>
+                {
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PermissionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RoleId", "UserId");
+
+                    b.HasIndex("PermissionId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserRoles", (string)null);
                 });
 
             modelBuilder.Entity("NetCore7.Core.Entities.User", b =>
@@ -125,6 +145,16 @@ namespace NetCore7.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
                     b.Property<int?>("RoleId")
                         .HasColumnType("int");
 
@@ -132,7 +162,7 @@ namespace NetCore7.Infrastructure.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("User");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("NetCore7.Core.Entities.Security.Permission", b =>
@@ -165,6 +195,29 @@ namespace NetCore7.Infrastructure.Migrations
                     b.Navigation("Role");
                 });
 
+            modelBuilder.Entity("NetCore7.Core.Entities.Security.UserRoles", b =>
+                {
+                    b.HasOne("NetCore7.Core.Entities.Security.Permission", null)
+                        .WithMany("UserRoles")
+                        .HasForeignKey("PermissionId");
+
+                    b.HasOne("NetCore7.Core.Entities.Security.Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("NetCore7.Core.Entities.User", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("NetCore7.Core.Entities.User", b =>
                 {
                     b.HasOne("NetCore7.Core.Entities.Security.Role", null)
@@ -180,13 +233,22 @@ namespace NetCore7.Infrastructure.Migrations
             modelBuilder.Entity("NetCore7.Core.Entities.Security.Permission", b =>
                 {
                     b.Navigation("RolePermissions");
+
+                    b.Navigation("UserRoles");
                 });
 
             modelBuilder.Entity("NetCore7.Core.Entities.Security.Role", b =>
                 {
                     b.Navigation("RolePermissions");
 
+                    b.Navigation("UserRoles");
+
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("NetCore7.Core.Entities.User", b =>
+                {
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

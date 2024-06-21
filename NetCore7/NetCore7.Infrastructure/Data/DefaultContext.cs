@@ -20,6 +20,8 @@ namespace NetCore7.Infrastructure.Data
             builder.ApplyConfiguration(new RoleConfiguration());
             builder.ApplyConfiguration(new PermissionConfiguration());
             builder.ApplyConfiguration(new RolePermissionConfiguration());
+            builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new UserRoleConfiguration());
         }
     }
 }

@@ -17,7 +17,7 @@ namespace NetCore7.Infrastructure.Data.Configurations
             base.Configure(builder);
 
             // Mapping for table
-            builder.ToTable("Role");
+            builder.ToTable("Roles");
 
             builder.Property(t => t.Name).IsRequired().HasMaxLength(100);
             builder.Property(t => t.Description).HasMaxLength(180);

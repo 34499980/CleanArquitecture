@@ -17,7 +17,7 @@ namespace NetCore7.Infrastructure.Data.Configurations.Security
             base.Configure(builder);
 
             // Mapping for table
-            builder.ToTable("Permission");
+            builder.ToTable("Permissions");
 
 
             builder.Property(t => t.Name).IsRequired().HasMaxLength(100);

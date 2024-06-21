@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using NetCore7.Core;
 using NetCore7.Core.Repositories.Contracts;
 using NetCore7.Infrastructure.Data;
 using System;
@@ -14,9 +15,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
+builder.Services.AddScoped(typeof(IContextProvider), typeof(ContextProvider));
+
 builder.Services.AddDbContext<DefaultContext>(options =>
     options.UseSqlServer(
-        builder.Configuration.GetConnectionString("Default")));
+        builder.Configuration.GetConnectionString("Default"),
+        x => x.MigrationsAssembly("NetCore7.Infrastructure"))
+            );
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -12,8 +12,8 @@ using NetCore7.Infrastructure.Data;
 namespace NetCore7.Infrastructure.Migrations
 {
     [DbContext(typeof(DefaultContext))]
-    [Migration("20240620151601_InitialModel")]
-    partial class InitialModel
+    [Migration("20240621123530_changeTablesName")]
+    partial class changeTablesName
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -56,7 +56,7 @@ namespace NetCore7.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Module", (string)null);
+                    b.ToTable("Modules", (string)null);
                 });
 
             modelBuilder.Entity("NetCore7.Core.Entities.Security.Permission", b =>
@@ -79,7 +79,7 @@ namespace NetCore7.Infrastructure.Migrations
 
                     b.HasIndex("ModuleId");
 
-                    b.ToTable("Permission", (string)null);
+                    b.ToTable("Permissions", (string)null);
                 });
 
             modelBuilder.Entity("NetCore7.Core.Entities.Security.Role", b =>
@@ -102,7 +102,7 @@ namespace NetCore7.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Role", (string)null);
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("NetCore7.Core.Entities.Security.RolePermission", b =>
@@ -117,7 +117,7 @@ namespace NetCore7.Infrastructure.Migrations
 
                     b.HasIndex("PermissionId");
 
-                    b.ToTable("RolePermission", (string)null);
+                    b.ToTable("RolesPermissions", (string)null);
                 });
 
             modelBuilder.Entity("NetCore7.Core.Entities.User", b =>
@@ -127,6 +127,14 @@ namespace NetCore7.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("RoleId")
                         .HasColumnType("int");
