@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "+77zQuKR1NVlid2hd7zAXfDnN884HxK1tn0Ej7Q849CcgDVIsfxa0KkXJqKnkmYRSa2LfdRUeT4ODVCXg7TJzg==",
+  "dgSpecHash": "3UZeNsQ4eOR9ZwUMrPbo5HJFnIf+6MJtwzxuRiMWQzy9m/7iTIA3YHKXSj/X9FJ3206MXy27bYKWsIzWC4lw8g==",
   "success": true,
   "projectFilePath": "C:\\Proyectos\\Arquitecture\\NetCore7\\NetCore7\\NetCore7.Core\\NetCore7.Core.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Dell\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.20\\microsoft.entityframeworkcore.7.0.20.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.20\\microsoft.entityframeworkcore.abstractions.7.0.20.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.20\\microsoft.entityframeworkcore.analyzers.7.0.20.nupkg.sha512",
