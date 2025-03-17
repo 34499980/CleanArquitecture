@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NetCore7.Core.Entities;
 using NetCore7.Infrastructure.Data.Configurations;
 using NetCore7.Infrastructure.Data.Configurations.Security;
 using System;
@@ -22,6 +23,7 @@ namespace NetCore7.Infrastructure.Data
             builder.ApplyConfiguration(new RolePermissionConfiguration());
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new UserRoleConfiguration());
+            SeedData.Seeds(builder);
         }
     }
 }

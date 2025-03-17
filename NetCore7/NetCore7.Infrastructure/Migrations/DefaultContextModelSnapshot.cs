@@ -54,6 +54,26 @@ namespace NetCore7.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Modules", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Active = true,
+                            ApplicationId = 1,
+                            Code = "Home",
+                            Description = "Home",
+                            Name = "Home"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Active = true,
+                            ApplicationId = 1,
+                            Code = "Settings",
+                            Description = "Settings",
+                            Name = "Settings"
+                        });
                 });
 
             modelBuilder.Entity("NetCore7.Core.Entities.Security.Permission", b =>
@@ -77,6 +97,32 @@ namespace NetCore7.Infrastructure.Migrations
                     b.HasIndex("ModuleId");
 
                     b.ToTable("Permissions", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ModuleId = 2,
+                            Name = "CreaateUser"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ModuleId = 2,
+                            Name = "EditUser"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ModuleId = 2,
+                            Name = "ViewUser"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ModuleId = 2,
+                            Name = "DeleteUser"
+                        });
                 });
 
             modelBuilder.Entity("NetCore7.Core.Entities.Security.Role", b =>
@@ -100,6 +146,20 @@ namespace NetCore7.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Administrator",
+                            Name = "Administrator"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Operador",
+                            Name = "Operador"
+                        });
                 });
 
             modelBuilder.Entity("NetCore7.Core.Entities.Security.RolePermission", b =>
@@ -115,6 +175,43 @@ namespace NetCore7.Infrastructure.Migrations
                     b.HasIndex("PermissionId");
 
                     b.ToTable("RolesPermissions", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            RoleId = 1,
+                            PermissionId = 2
+                        },
+                        new
+                        {
+                            RoleId = 1,
+                            PermissionId = 1
+                        },
+                        new
+                        {
+                            RoleId = 1,
+                            PermissionId = 3
+                        },
+                        new
+                        {
+                            RoleId = 1,
+                            PermissionId = 4
+                        },
+                        new
+                        {
+                            RoleId = 2,
+                            PermissionId = 2
+                        },
+                        new
+                        {
+                            RoleId = 2,
+                            PermissionId = 1
+                        },
+                        new
+                        {
+                            RoleId = 2,
+                            PermissionId = 3
+                        });
                 });
 
             modelBuilder.Entity("NetCore7.Core.Entities.Security.UserRoles", b =>
@@ -163,6 +260,14 @@ namespace NetCore7.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("Users", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "admin@gmail.com",
+                            FullName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("NetCore7.Core.Entities.Security.Permission", b =>
