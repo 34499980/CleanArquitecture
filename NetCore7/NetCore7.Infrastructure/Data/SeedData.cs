@@ -22,6 +22,7 @@ namespace NetCore7.Infrastructure.Data
             SeedPerissions(builder);
             SeedPermissionRoles(builder);
             SeedUSers(builder);
+            SeedUserRol(builder);
         }
         private static void SeedModules(ModelBuilder builder)
         {
@@ -70,13 +71,15 @@ namespace NetCore7.Infrastructure.Data
             {
                 new User(){Id = 1,
                           FullName = "admin",
-                          Email =  "admin@gmail.com",
-                          UserRoles = new List<UserRoles>() {
-                          new UserRoles(){
-                          UserId = 1,
-                          RoleId = (int)Core.Enums.Roles.Administrator}
-                           },
+                          Email =  "admin@gmail.com"
+                          
                 }
+            });
+        }
+        private static void SeedUserRol(ModelBuilder builder)
+        {
+            builder.Entity<UserRoles>().HasData(new List<UserRoles>() {
+                new UserRoles(){ UserId = 1, RoleId = (int)Core.Enums.Roles.Administrator}
             });
         }
     }

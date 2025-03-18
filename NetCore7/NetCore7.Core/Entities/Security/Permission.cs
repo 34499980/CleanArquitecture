@@ -12,7 +12,6 @@ namespace NetCore7.Core.Entities.Security
         public Permission()
         {
             RolePermissions = new HashSet<RolePermission>();
-            UserRoles = new HashSet<UserRoles>();
         }
 
         public string Name { get; set; }
@@ -21,6 +20,5 @@ namespace NetCore7.Core.Entities.Security
         public virtual Module Module { get; set; }
 
         public virtual ICollection<RolePermission> RolePermissions { get; set; }
-        public virtual ICollection<UserRoles> UserRoles { get; set; }
     }
 }

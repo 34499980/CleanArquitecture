@@ -23,6 +23,8 @@ namespace NetCore7.Infrastructure.Data.Configurations
             builder.Property(t => t.FullName).IsRequired().HasMaxLength(250);
             builder.Property(t => t.Email).HasMaxLength(250);
 
+            
+
         }
     }
 }

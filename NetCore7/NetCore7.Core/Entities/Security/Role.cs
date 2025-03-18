@@ -13,12 +13,10 @@ namespace NetCore7.Core.Entities.Security
         {
             RolePermissions = new HashSet<RolePermission>();
             UserRoles = new HashSet<UserRoles>();
-            Users = new HashSet<User>();
         }
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public ICollection<User> Users { get; set; }
         public ICollection<RolePermission> RolePermissions { get; set; }
         public ICollection<UserRoles> UserRoles { get; set; }
     }

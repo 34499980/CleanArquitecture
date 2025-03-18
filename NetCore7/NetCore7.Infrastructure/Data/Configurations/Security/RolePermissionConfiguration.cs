@@ -30,6 +30,7 @@ namespace NetCore7.Infrastructure.Data.Configurations.Security
                 .WithMany(x => x.RolePermissions)
                 .HasForeignKey(x => x.RoleId)
                 .OnDelete(DeleteBehavior.Restrict);
+
             builder.HasOne(p => p.Permission)
                 .WithMany(x => x.RolePermissions)
                 .HasForeignKey(x => x.PermissionId)
