@@ -9,6 +9,7 @@ using System.Linq;
 using System.Linq.Dynamic;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.XPath;
@@ -121,7 +122,22 @@ namespace NetCore7.Infrastructure
         {
             return Task.FromResult(entity);
         }
+        public async Task<IEnumerable<TProjected>> GetProjectedMany<TProjected>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TProjected>> projection, bool noTracking = false)
+        {
+            var query = _dbSet.AsQueryable();
+            if (noTracking)
+                query = _dbSet.AsNoTracking();
 
+            return await ApplyFilter(query, predicate).Select(projection).ToListAsync();
+        }
+        protected IQueryable<T> ApplyFilter<T>(IQueryable<T> source, Expression<Func<T, bool>> filter) where T : Entity<TIdentifier>
+        {
+            if (filter != null)
+            {
+                source = source.Where(filter);
+            }      
+            return source;
+        }
         public virtual async Task<PageResult<TProjected>> GetPaged<TProjected>(int pageIndex, int pageSize, string sortExpression, Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TProjected>> projection)
         {
             return await _dbSet.GetPaged(pageIndex, pageSize, sortExpression, predicate, projection);

@@ -16,7 +16,7 @@ namespace NetCore7.Infrastructure.Data.Repositories
         }
         protected override IQueryable<User> LoadRelations(IQueryable<User> query)
         {
-           // query = query;
+            query = query.Include(q => q.UserRoles);
             return base.LoadRelations(query);
         }
     }

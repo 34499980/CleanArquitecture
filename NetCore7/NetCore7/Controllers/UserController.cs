@@ -27,7 +27,7 @@ namespace NetCore7.API.Controllers
         }
         [HttpGet]
         //[Authorize]
-        public async Task<IEnumerable<UserDto>> GetAll()
+        public async Task<IEnumerable<UserListDto>> GetAll()
         {
             var result = await _userService.GetAll();
             return result;
@@ -35,14 +35,14 @@ namespace NetCore7.API.Controllers
 
         [HttpPost]
         // [Authorize]
-        public async Task<IActionResult> Post(UserDto dto)
+        public async Task<IActionResult> Post(UserAddEditDto dto)
         {            
            await _userService.Add(dto); 
             return Ok();
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(UserDto dto)
+        [HttpPut]
+        public async Task<IActionResult> Put(UserAddEditDto dto)
         {
             await _userService.Update(dto);
             return Ok();

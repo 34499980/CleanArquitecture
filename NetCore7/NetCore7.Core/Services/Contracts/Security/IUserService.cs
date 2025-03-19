@@ -9,9 +9,9 @@ namespace NetCore7.Core.Services
 {
     public interface IUserService
     {
-        Task<IEnumerable<UserDto>> GetAll();
-        Task Add(UserDto dto);
-        Task Update(UserDto dto);
+        Task<IEnumerable<UserListDto>> GetAll();
+        Task Add(UserAddEditDto dto);
+        Task Update(UserAddEditDto dto);
         Task<UserDto> GetById(int id);
         Task Delete(int id);
     }

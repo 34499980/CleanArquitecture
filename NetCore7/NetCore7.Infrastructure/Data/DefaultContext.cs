@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NetCore7.Core.Entities;
+using NetCore7.Core.Entities.Security;
 using NetCore7.Infrastructure.Data.Configurations;
 using NetCore7.Infrastructure.Data.Configurations.Security;
 using System;
@@ -10,11 +11,13 @@ using System.Threading.Tasks;
 
 namespace NetCore7.Infrastructure.Data
 {
-    public class DefaultContext: DbContext
+    public class DefaultContext : DbContext
     {
+
         public DefaultContext(DbContextOptions<DefaultContext> options) : base(options)
         {
         }
+        public virtual DbSet<UserRoles> UserRoles { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new ModuleConfiguration());
@@ -23,7 +26,11 @@ namespace NetCore7.Infrastructure.Data
             builder.ApplyConfiguration(new RolePermissionConfiguration());
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new UserRoleConfiguration());
+
             SeedData.Seeds(builder);
+
+            
         }
+
     }
 }

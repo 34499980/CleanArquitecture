@@ -25,7 +25,13 @@ builder.Services.AddDbContext<DefaultContext>(options =>
         builder.Configuration.GetConnectionString("Default"),
         x => x.MigrationsAssembly("NetCore7.Infrastructure"))
             );
+
+    builder.Services.AddCors(options => {
+        options.AddDefaultPolicy(x => { x.WithOrigins("*"); });
+    });
+
 var app = builder.Build();
+app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

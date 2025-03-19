@@ -31,10 +31,6 @@ namespace NetCore7.Infrastructure.Data.Configurations.Security
                 .HasForeignKey(x => x.RoleId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(p => p.User)
-                .WithMany(x => x.UserRoles)
-                .HasForeignKey(x => x.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

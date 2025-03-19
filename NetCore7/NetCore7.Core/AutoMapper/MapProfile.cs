@@ -13,7 +13,9 @@ namespace NetCore7.Core.AutoMapper
     {
         public MapProfile()
         {
-            CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<User, UserDto>()
+                .ForMember(q => q.RolesIds, opt => opt.MapFrom(src => src.UserRoles.Select(x => x.RoleId)))
+                .ReverseMap();
         }
     }
 }

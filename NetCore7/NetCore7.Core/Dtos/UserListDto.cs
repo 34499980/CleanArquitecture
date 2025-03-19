@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace NetCore7.Core.Dtos
 {
-    public class UserDto
+    public class UserListDto
     {
         public int Id { get; set; }
         public string FullName { get; set; }
         public string Email { get; set; }
-        public int[] RolesIds { get; set; }
+        public string UserRoles { get; set; }
     }
 }

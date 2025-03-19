@@ -22,6 +22,7 @@ namespace NetCore7.Core.Repositories
         Task<IEnumerable<TEntity>> GetAllAsNoTrack();
         Task<TEntity> Get(TIdentifier id);
         Task<bool> Any(Expression<Func<TEntity, bool>>? predicates);
+        Task<IEnumerable<TProjected>> GetProjectedMany<TProjected>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TProjected>> projection, bool noTracking = false);
         Task<PageResult<TProjected>> GetPaged<TProjected>(int pageIndex, int pageSize, string sortExpression, Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TProjected>> projection);
     }
 }
