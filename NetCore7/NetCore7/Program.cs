@@ -1,10 +1,13 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using NetCore7.Core;
 using NetCore7.Core.Repositories.Contracts;
 using NetCore7.Core.Services;
 using NetCore7.Infrastructure.Data;
 using System;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,7 +32,20 @@ builder.Services.AddDbContext<DefaultContext>(options =>
     builder.Services.AddCors(options => {
         options.AddDefaultPolicy(x => { x.WithOrigins("*"); });
     });
-
+    builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = "http://localhost:7169",  // El emisor esperado del token
+            ValidAudience = "http://localhost:4200",  // La audiencia esperada
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("asdwda1d8a4sd8w4das8d*w8d*asd@#"))
+        };
+    });
 var app = builder.Build();
 app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 

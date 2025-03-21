@@ -8,9 +8,11 @@ namespace NetCore7.Core
 {
     public interface IContextProvider
     {
-        public int SelectedCountry { get; }
-        public int UserId { get; }
-        public int RoleId { get; }
-        public int CountryId { get; }
+        public int SelectedCountry { get; set; }
+        public int UserId { get; set; }
+
+        public int[] RoleIds { get; set; }
+        public int[] PermissionsIds { get; set; }
+        public int CountryId { get; set; }
     }
 }

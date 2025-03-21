@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Q1t9b+sxYJ/dE+EJa2iEW88DdzQdWbA2VET9KpRsyS4tXLrHCX4q+ahhA12Jpcb/E7pYtpfv9+NNL28KIhWX2Q==",
+  "dgSpecHash": "HZquyciLEt9XJxuM5WmDHAaWFWULh/6FHAIrHS31lnKztuxF+T4iEWX1zaw9rJHtft7W4QwKWb+Vz5LhqvgBZw==",
   "success": true,
   "projectFilePath": "C:\\Proyectos\\Arquitecture\\NetCore7\\NetCore7\\NetCore7\\NetCore7.API.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\Dell\\.nuget\\packages\\entityframework\\6.5.1\\entityframework.6.5.1.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\linq.dynamic\\1.0.4\\linq.dynamic.1.0.4.nupkg.sha512",
+    "C:\\Users\\Dell\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.20\\microsoft.aspnetcore.authentication.jwtbearer.7.0.20.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.3\\microsoft.aspnetcore.openapi.7.0.3.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

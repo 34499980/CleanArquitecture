@@ -71,7 +71,8 @@ namespace NetCore7.Infrastructure.Data
             {
                 new User(){Id = 1,
                           FullName = "admin",
-                          Email =  "admin@gmail.com"
+                          Email =  "admin@gmail.com",
+                          Password = "admin",
                           
                 }
             });

@@ -111,5 +111,13 @@ namespace NetCore7.Core.Services
 
             return _mapper.Map<UserDto>(entity);
         }
+
+        public async Task<UserDto> GetUserByName(string email)
+        {
+            var entity = await _unitOfWork.Users.FirstOrDefault(x => x.Email == email);
+            if (entity == null) throw new Exception("Usuario no encontrado");
+
+            return _mapper.Map<UserDto>(entity);
+        }
     }
 }
