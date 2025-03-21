@@ -13,5 +13,6 @@ namespace NetCore7.Core.Dtos
         public string FullName { get; set; }
         public string Email { get; set; }
         public int[] RolesIds { get; set; }
+        public int[] PermissionsIds { get; set; }
     }
 }
