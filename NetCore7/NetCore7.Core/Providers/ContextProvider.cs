@@ -10,7 +10,9 @@ namespace NetCore7.Core
     {
         public  int SelectedCountry { get; set; }
         public  int UserId { get; set; }
-        public  int[] RoleIds { get; set; }
+        public string Email { get; set; }
+
+        public int[] RoleIds { get; set; }
         public int[] PermissionsIds { get; set; }
         public  int CountryId { get; set; }
     }

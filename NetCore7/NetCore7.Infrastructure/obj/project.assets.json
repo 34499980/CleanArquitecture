@@ -1345,7 +1345,9 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "AutoMapper": "13.0.1",
-          "NetCore7.Common": "1.0.0"
+          "Microsoft.IdentityModel.Tokens": "6.35.0",
+          "NetCore7.Common": "1.0.0",
+          "System.IdentityModel.Tokens.Jwt": "6.35.0"
         },
         "compile": {
           "bin/placeholder/NetCore7.Core.dll": {}

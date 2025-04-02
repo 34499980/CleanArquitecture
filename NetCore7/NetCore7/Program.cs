@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using NetCore7.API.Middleware;
 using NetCore7.Core;
 using NetCore7.Core.Repositories.Contracts;
 using NetCore7.Core.Services;
+using NetCore7.Core.Services.Contracts.Security;
 using NetCore7.Infrastructure.Data;
 using System;
 using System.Text;
@@ -22,6 +24,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
 builder.Services.AddScoped(typeof(IContextProvider), typeof(ContextProvider));
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddTransient<TokenRefreshMiddleware>();
+
 
 builder.Services.AddDbContext<DefaultContext>(options =>
     options.UseSqlServer(
@@ -46,7 +51,10 @@ builder.Services.AddDbContext<DefaultContext>(options =>
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("asdwda1d8a4sd8w4das8d*w8d*asd@#"))
         };
     });
+
 var app = builder.Build();
+app.UseMiddleware<TokenRefreshMiddleware>(); // Agregarlo a la cadena de middleware
+
 app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 // Configure the HTTP request pipeline.

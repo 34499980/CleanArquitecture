@@ -15,5 +15,6 @@ namespace NetCore7.Core.Services
         Task<UserDto> GetById(int id);
         Task Delete(int id);
         Task<UserDto> GetUserByName(string email);
+        Task<int[]> GetPermissions(int userId);
     }
 }

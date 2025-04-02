@@ -10,5 +10,6 @@ namespace NetCore7.Core.Services.Contracts.Security
     public interface IAuthService
     {
        public void SetAuthorization(UserDto dto);
+       public string GenerateToken(int userId, string userName);
     }
 }

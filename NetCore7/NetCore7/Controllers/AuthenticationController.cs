@@ -28,8 +28,6 @@ namespace NetCore7.API.Controllers
         private readonly IUserService _userService;
 
 
-        private const string SECRET_KEY = "asdwda1d8a4sd8w4das8d*w8d*asd@#";
-        public static readonly SymmetricSecurityKey SIGNING_KEY = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SECRET_KEY));
         public AuthenticationController(IConfiguration configuration, IAuthService authService, IUserService userService)
         {
             this._configuration = configuration;
@@ -39,7 +37,7 @@ namespace NetCore7.API.Controllers
 
         // POST api/<AuthenticationController>
         [HttpPost]
-        public async Task <IActionResult> Post(UserDto userInput)
+        public async Task <UserDto> Post(AuthDto userInput)
         {
 
             try
@@ -50,32 +48,34 @@ namespace NetCore7.API.Controllers
 
                 if (userOutput != null && userInput.Password == userOutput.Password)
                 {
-                   
-                    var credentials = new Microsoft.IdentityModel.Tokens.SigningCredentials(SIGNING_KEY, SecurityAlgorithms.HmacSha256);
-                    var header = new JwtHeader(credentials);
-                    DateTime expiry = DateTime.UtcNow.AddMinutes(60);
-                    int ts = (int)(expiry - new DateTime(1970, 1, 1)).TotalSeconds;
-                    var payload = new JwtPayload
-                    {
-                        {"id", userOutput.Id },
-                        { "email", userOutput.Email},
-                        { "exp", ts},
-                        { "iss", "https://localhost:44362"},
-                        { "aud", "https://localhost:44362"}
-                    };
-                    var secToken = new JwtSecurityToken(header, payload);
-                    var handler = new JwtSecurityTokenHandler();
-                    var tokenString = handler.WriteToken(secToken);
+                   userOutput.Token = _authService.GenerateToken(userOutput.Id, userOutput.Email);
+                    /* var credentials = new Microsoft.IdentityModel.Tokens.SigningCredentials(SIGNING_KEY, SecurityAlgorithms.HmacSha256);
+                     var header = new JwtHeader(credentials);
+                     DateTime expiry = DateTime.UtcNow.AddMinutes(60);
+                     int ts = (int)(expiry - new DateTime(1970, 1, 1)).TotalSeconds;
+                     var payload = new JwtPayload
+                     {
+                         {"id", userOutput.Id },
+                         { "email", userOutput.Email},
+                         { "exp", ts},
+                         { "iss", "https://localhost:7169"},
+                         { "aud", "https://localhost:4200"}
+                     };
+                     var secToken = new JwtSecurityToken(header, payload);
+                     var handler = new JwtSecurityTokenHandler();
+                     var tokenString = handler.WriteToken(secToken);
 
-                    userOutput.Token = tokenString;
+                     userOutput.Token = tokenString;
 
-                    return Ok(userOutput);
+                     return Ok(userOutput);
 
+                     */
 
+                    return userOutput;
                 }
                 else
                 {
-                    return StatusCode(401, "Usuario o contraseña incorrectos.");
+                    throw new Exception("Usuario o contraseña incorrectos.");
 
                 }
 
@@ -86,7 +86,7 @@ namespace NetCore7.API.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut("SetAuthorization")]
         public void SetAuthorization(UserDto dto)
         {
 

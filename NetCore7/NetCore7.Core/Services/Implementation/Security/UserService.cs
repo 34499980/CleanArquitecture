@@ -117,7 +117,15 @@ namespace NetCore7.Core.Services
             var entity = await _unitOfWork.Users.FirstOrDefault(x => x.Email == email);
             if (entity == null) throw new Exception("Usuario no encontrado");
 
-            return _mapper.Map<UserDto>(entity);
+            var result = _mapper.Map<UserDto>(entity);
+            result.PermissionsIds = await GetPermissions(result.Id);
+            return result;
+        }
+
+        public async Task<int[]> GetPermissions(int userId)
+        {
+            var permissions = await _unitOfWork.Users.GetPermissions(userId);
+            return permissions;
         }
     }
 }

@@ -9,5 +9,6 @@ namespace NetCore7.Core.Repositories.Contracts
 {
     public interface IUserRepository : IRepository<User, int>
     {
+        Task<int[]> GetPermissions(int userId);
     }
 }

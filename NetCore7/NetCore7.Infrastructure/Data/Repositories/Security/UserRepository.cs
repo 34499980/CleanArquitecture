@@ -19,5 +19,15 @@ namespace NetCore7.Infrastructure.Data.Repositories
             query = query.Include(q => q.UserRoles);
             return base.LoadRelations(query);
         }
+        public async Task<int[]> GetPermissions(int userId)
+        {
+            var permissions = await _dbSet.Where(u => u.Id == userId)
+                                           .SelectMany(ur => ur.UserRoles)
+                                           .SelectMany(rp => rp.Role.RolePermissions)
+                                           .Select(p => p.PermissionId)
+                                           .Distinct()
+                                           .ToArrayAsync();
+            return permissions;
+        }
     }
 }
