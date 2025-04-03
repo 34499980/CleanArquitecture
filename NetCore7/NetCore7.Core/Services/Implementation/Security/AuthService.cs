@@ -58,14 +58,14 @@ namespace NetCore7.Core.Services
             new Claim(ClaimTypes.NameIdentifier, userId.ToString())
         };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(GenerateKey()));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("N2QwNWI2OGYzZWJjMzYxZTU5MmNlMTM3YjEzYmU0ZGRmZDFkMjAxZDZiNjQ="));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
                 issuer: "https://localhost:7169",
                 audience: "https://localhost:4200",
                 claims: claims,
-                expires: DateTime.Now.AddHours(1),
+                expires: DateTime.UtcNow.AddMinutes(30),
                 signingCredentials: creds
             );
 

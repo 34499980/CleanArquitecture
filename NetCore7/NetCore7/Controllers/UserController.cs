@@ -19,14 +19,14 @@ namespace NetCore7.API.Controllers
         }
 
         [HttpGet("{id}")]
-        //[Authorize]
+        [Authorize]
         public async Task<UserDto> Get(int id)
         {
             var result = await _userService.GetById(id);
             return result;   
         }
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         public async Task<IEnumerable<UserListDto>> GetAll()
         {
             var result = await _userService.GetAll();
@@ -34,7 +34,7 @@ namespace NetCore7.API.Controllers
         }
 
         [HttpPost]
-        // [Authorize]
+        [Authorize]
         public async Task<IActionResult> Post(UserAddEditDto dto)
         {            
            await _userService.Add(dto); 
@@ -42,6 +42,7 @@ namespace NetCore7.API.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> Put(UserAddEditDto dto)
         {
             await _userService.Update(dto);
@@ -49,7 +50,7 @@ namespace NetCore7.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        // [Authorize]
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             await _userService.Delete(id);
