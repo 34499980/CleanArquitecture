@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NetCore7.Core.Dtos;
+using NetCore7.Core.Enums;
 using NetCore7.Core.Services;
 using System.Collections;
 
@@ -26,7 +27,7 @@ namespace NetCore7.API.Controllers
             return result;   
         }
         [HttpGet]
-        [Authorize]
+        [HasPermission(Permissions.ViewUser)]
         public async Task<IEnumerable<UserListDto>> GetAll()
         {
             var result = await _userService.GetAll();

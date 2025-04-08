@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -12,6 +13,7 @@ using NetCore7.Infrastructure.Data;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 
 string APIName = "CT API";
@@ -110,8 +112,17 @@ app.Use(async (context, next) =>
 
     if (!string.IsNullOrEmpty(authorizationHeader) && authorizationHeader.StartsWith("Bearer ", StringComparison.OrdinalIgnoreCase))
     {
-        var token = authorizationHeader.Substring("Bearer ".Length).Trim();
+      
 
+        var token = authorizationHeader.Substring("Bearer ".Length).Trim();
+        var handler = new JwtSecurityTokenHandler();
+        var jsonToken = handler.ReadToken(token) as JwtSecurityToken;
+
+       
+
+        var identity = new ClaimsIdentity(jsonToken.Claims, "CustomAuth");
+        var principal = new ClaimsPrincipal(identity);
+        context.User = principal;
         if (!EsTokenValido(token))
         {
             context.Response.StatusCode = 401; // Unauthorized
@@ -149,6 +160,7 @@ app.Run();
 
     if (jsonToken != null)
     {
+        
         var exp = jsonToken.Claims.FirstOrDefault(c => c.Type == "exp")?.Value;
         if (exp != null)
         {

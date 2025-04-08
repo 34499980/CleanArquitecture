@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using NetCore7.Core.Dtos;
+using NetCore7.Core.Entities;
 using NetCore7.Core.Services;
 using NetCore7.Core.Services.Contracts.Security;
 
@@ -49,6 +50,7 @@ namespace NetCore7.API.Controllers
                 if (userOutput != null && userInput.Password == userOutput.Password)
                 {
                    userOutput.Token = _authService.GenerateToken(userOutput.Id, userOutput.Email);
+                    _authService.SetAuthorization(userOutput);
                     /* var credentials = new Microsoft.IdentityModel.Tokens.SigningCredentials(SIGNING_KEY, SecurityAlgorithms.HmacSha256);
                      var header = new JwtHeader(credentials);
                      DateTime expiry = DateTime.UtcNow.AddMinutes(60);
@@ -70,7 +72,12 @@ namespace NetCore7.API.Controllers
                      return Ok(userOutput);
 
                      */
-
+                    var claims = new List<Claim>
+                    {
+                        new Claim("UserName", userOutput.FullName),
+                        new Claim("userId", userOutput.Id.ToString())
+                    };
+                    
                     return userOutput;
                 }
                 else
