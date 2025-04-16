@@ -20,7 +20,7 @@ namespace NetCore7.API.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize]
+        [HasPermission(Permissions.ViewUser)]
         public async Task<UserDto> Get(int id)
         {
             var result = await _userService.GetById(id);
@@ -35,7 +35,7 @@ namespace NetCore7.API.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [HasPermission(Permissions.CreaateUser)]
         public async Task<IActionResult> Post(UserAddEditDto dto)
         {            
            await _userService.Add(dto); 
@@ -43,7 +43,7 @@ namespace NetCore7.API.Controllers
         }
 
         [HttpPut]
-        [Authorize]
+        [HasPermission(Permissions.EditUser)]
         public async Task<IActionResult> Put(UserAddEditDto dto)
         {
             await _userService.Update(dto);
@@ -51,7 +51,7 @@ namespace NetCore7.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize]
+        [HasPermission(Permissions.DeleteUser)]
         public async Task<IActionResult> Delete(int id)
         {
             await _userService.Delete(id);

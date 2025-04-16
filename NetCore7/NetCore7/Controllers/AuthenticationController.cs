@@ -51,32 +51,6 @@ namespace NetCore7.API.Controllers
                 {
                    userOutput.Token = _authService.GenerateToken(userOutput.Id, userOutput.Email);
                     _authService.SetAuthorization(userOutput);
-                    /* var credentials = new Microsoft.IdentityModel.Tokens.SigningCredentials(SIGNING_KEY, SecurityAlgorithms.HmacSha256);
-                     var header = new JwtHeader(credentials);
-                     DateTime expiry = DateTime.UtcNow.AddMinutes(60);
-                     int ts = (int)(expiry - new DateTime(1970, 1, 1)).TotalSeconds;
-                     var payload = new JwtPayload
-                     {
-                         {"id", userOutput.Id },
-                         { "email", userOutput.Email},
-                         { "exp", ts},
-                         { "iss", "https://localhost:7169"},
-                         { "aud", "https://localhost:4200"}
-                     };
-                     var secToken = new JwtSecurityToken(header, payload);
-                     var handler = new JwtSecurityTokenHandler();
-                     var tokenString = handler.WriteToken(secToken);
-
-                     userOutput.Token = tokenString;
-
-                     return Ok(userOutput);
-
-                     */
-                    var claims = new List<Claim>
-                    {
-                        new Claim("UserName", userOutput.FullName),
-                        new Claim("userId", userOutput.Id.ToString())
-                    };
                     
                     return userOutput;
                 }

@@ -49,7 +49,8 @@ namespace NetCore7.Core.Services
             entity = new User()
             {
                 Email = dto.Email,
-                FullName = dto.FullName
+                FullName = dto.FullName,
+                Password = dto.Password
             };
             var roles = new List<UserRoles>();
             UserRoles rol;
@@ -71,10 +72,13 @@ namespace NetCore7.Core.Services
         {
             var entity = await _unitOfWork.Users.FirstOrDefault(x => x.Email == dto.Email);
             if (entity != null && dto.Id != entity.Id) throw new Exception("Ya existe el usuario!");
+            entity = await _unitOfWork.Users.FirstOrDefault(x => x.Id == dto.Id);
+
             var rolesIdsDb = entity.UserRoles.Select(x => x.RoleId).ToList();
             var addRolesIds = dto.RolesIds.Where(x => !rolesIdsDb.Contains(x)).ToList();
             var deleteRolesIds = rolesIdsDb.Where(x => !dto.RolesIds.Contains(x)).ToList();
             entity.FullName = dto.FullName;
+            entity.Password = dto.Password;
 
             UserRoles rol;
             foreach (var id in addRolesIds)
