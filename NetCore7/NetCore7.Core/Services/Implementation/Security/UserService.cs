@@ -39,6 +39,20 @@ namespace NetCore7.Core.Services
             return users;
 
         }
+        public async Task<IEnumerable<UserListDto>> GetAllByFilter(string name)
+        {
+            var users = await _unitOfWork.Users.GetProjectedMany(x => string.IsNullOrEmpty(name) || x.FullName.Contains(name) ,
+                 x => new UserListDto()
+                 {
+                     Id = x.Id,
+                     Email = x.Email,
+                     FullName = x.FullName,
+                     UserRoles = string.Join(",", x.UserRoles.Select(z => z.Role.Name))
+                 });
+            return users;
+
+        }
+
         public async Task Add(UserAddEditDto dto)
         {
             if (dto.Email == "" || dto.FullName == "") throw new Exception("Debe ingresar un valor!"); 

@@ -26,11 +26,19 @@ namespace NetCore7.API.Controllers
             var result = await _userService.GetById(id);
             return result;   
         }
-        [HttpGet]
+        [HttpGet("GetAll")]
         [HasPermission(Permissions.ViewUser)]
         public async Task<IEnumerable<UserListDto>> GetAll()
         {
             var result = await _userService.GetAll();
+            return result;
+        }
+
+        [HttpGet("GetAllByFilter")]
+        [HasPermission(Permissions.ViewUser)]
+        public async Task<IEnumerable<UserListDto>> GetAllByFilter([FromQuery] string? name)
+        {
+            var result = await _userService.GetAllByFilter(name);
             return result;
         }
 

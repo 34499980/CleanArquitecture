@@ -16,5 +16,6 @@ namespace NetCore7.Core.Services
         Task Delete(int id);
         Task<UserDto> GetUserByName(string email);
         Task<int[]> GetPermissions(int userId);
+        Task<IEnumerable<UserListDto>> GetAllByFilter(string name);
     }
 }
