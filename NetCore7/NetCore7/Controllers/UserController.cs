@@ -38,6 +38,7 @@ namespace NetCore7.API.Controllers
         [HasPermission(Permissions.ViewUser)]
         public async Task<IEnumerable<UserListDto>> GetAllByFilter([FromQuery] string? name)
         {
+            
             var result = await _userService.GetAllByFilter(name);
             return result;
         }
