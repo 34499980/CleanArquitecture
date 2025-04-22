@@ -18,6 +18,12 @@ namespace NetCore7.Infrastructure.Data
         {
         }
         public virtual DbSet<UserRoles> UserRoles { get; set; }
+        public virtual DbSet<Module> Modules { get; set; }
+        public virtual DbSet<Permission> Permissions { get; set; }
+        public virtual DbSet<RolePermission> RolePermissions { get; set; }
+
+
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new ModuleConfiguration());

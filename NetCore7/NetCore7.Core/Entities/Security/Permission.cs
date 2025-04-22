@@ -20,5 +20,6 @@ namespace NetCore7.Core.Entities.Security
         public virtual Module Module { get; set; }
 
         public virtual ICollection<RolePermission> RolePermissions { get; set; }
+
     }
 }

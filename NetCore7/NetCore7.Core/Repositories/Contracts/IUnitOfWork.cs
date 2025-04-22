@@ -12,6 +12,7 @@ namespace NetCore7.Core.Repositories.Contracts
     public interface IUnitOfWork: IBaseUnitOfWork
     {
         IUserRepository Users { get; }
+        IRolePermissionRepository RolePermission { get; }
         DbSet<UserRoles> UserRoles { get; }
     }
 }
