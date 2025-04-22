@@ -17,5 +17,6 @@ namespace NetCore7.Core.Services
         Task<UserDto> GetUserByName(string email);
         Task<int[]> GetPermissions(int userId);
         Task<IEnumerable<UserListDto>> GetAllByFilter(string name);
+        Task<ImageDto> GetImageByUser(string email);
     }
 }

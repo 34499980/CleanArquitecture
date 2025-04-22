@@ -16,5 +16,7 @@ namespace NetCore7.Core.Dtos
         public string Token { get; set; }   
         public int[] RolesIds { get; set; }
         public int[] PermissionsIds { get; set; }
+        public string Image { get; set; }
+
     }
 }

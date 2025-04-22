@@ -82,5 +82,13 @@ namespace NetCore7.API.Controllers
             }
         }
 
+        [HttpGet("GetImageByUser")]
+        public async Task<ImageDto> GetImageByUser([FromQuery] string? email)
+        {
+
+            var result = await _userService.GetImageByUser(email);
+            return result;
+        }
+
     }
 }

@@ -73,6 +73,7 @@ namespace NetCore7.Infrastructure.Data
                           FullName = "admin",
                           Email =  "admin@gmail.com",
                           Password = "admin",
+                          Image= "",
                           
                 }
             });

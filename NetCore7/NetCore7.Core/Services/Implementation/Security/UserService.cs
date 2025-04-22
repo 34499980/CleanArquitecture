@@ -94,6 +94,11 @@ namespace NetCore7.Core.Services
             entity.FullName = dto.FullName;
             entity.Password = dto.Password;
 
+            if (!string.IsNullOrEmpty(dto.Image))
+            {
+                entity.Image = dto.Image;
+            }
+
             UserRoles rol;
             foreach (var id in addRolesIds)
             {
@@ -144,6 +149,14 @@ namespace NetCore7.Core.Services
         {
             var permissions = await _unitOfWork.Users.GetPermissions(userId);
             return permissions;
+        }
+        public async Task<ImageDto> GetImageByUser(string email)
+        {
+            if (string.IsNullOrEmpty(email)) throw new Exception("campo vacio!");
+            var entity = await _unitOfWork.Users.FirstOrDefault(x => x.Email == email);
+
+
+            return new ImageDto() { Image = entity.Image };
         }
     }
 }

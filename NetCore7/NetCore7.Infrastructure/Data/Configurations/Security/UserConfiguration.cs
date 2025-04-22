@@ -21,9 +21,13 @@ namespace NetCore7.Infrastructure.Data.Configurations
             builder.ToTable("Users");
 
             builder.Property(t => t.FullName).IsRequired().HasMaxLength(250);
-            builder.Property(t => t.Email).HasMaxLength(250);
+            builder.Property(t => t.Email).IsRequired().HasMaxLength(250);
+            builder.Property(t => t.Password).IsRequired().HasMaxLength(50);
+            builder.Property(t => t.Image).HasMaxLength(5000);
 
-            
+
+
+
 
         }
     }
