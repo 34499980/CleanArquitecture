@@ -33,6 +33,7 @@ builder.Services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
 builder.Services.AddScoped(typeof(IContextProvider), typeof(ContextProvider));
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IPermissionsService, PermissionService>();
 
 //builder.Services.AddTransient<TokenRefreshMiddleware>();
 

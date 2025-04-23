@@ -17,7 +17,6 @@ namespace NetCore7.Core.AutoMapper
             CreateMap<User, UserDto>()
                 .ForMember(q => q.RolesIds, opt => opt.MapFrom(src => src.UserRoles.Select(x => x.RoleId)))
                 .ReverseMap();
-            CreateMap<PermissionSelected, PermissionSelectedDto>().ReverseMap();
         }
     }
 }

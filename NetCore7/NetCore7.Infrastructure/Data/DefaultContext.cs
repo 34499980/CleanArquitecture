@@ -21,6 +21,8 @@ namespace NetCore7.Infrastructure.Data
         public virtual DbSet<Module> Modules { get; set; }
         public virtual DbSet<Permission> Permissions { get; set; }
         public virtual DbSet<RolePermission> RolePermissions { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+
 
 
 

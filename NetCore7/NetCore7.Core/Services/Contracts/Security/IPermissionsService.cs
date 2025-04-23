@@ -10,5 +10,7 @@ namespace NetCore7.Core.Services.Contracts.Security
     public interface IPermissionsService
     {
         Task<IEnumerable<PermissionSelectedDto>> GetPermissionsByRoleId(int roleId);
+        Task UpdatePermissions(EditPermissionsDto dto);
+        Task<IEnumerable<ItemDto>> GetAllRoles(string name);
     }
 }

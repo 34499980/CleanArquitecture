@@ -18,12 +18,22 @@ namespace NetCore7.Infrastructure.Data
         }
         private IUserRepository _users;
         private DbSet<UserRoles> _userRoles;
-        private IRolePermissionRepository _rolePermission;
+        private DbSet<RolePermission> _rolePermission;
+        private DbSet<Module> _module;
+        private DbSet<Role> _role;
+
+
+
 
 
         public IUserRepository Users => _users ??= new UserRepository(_context);
-        public IRolePermissionRepository RolePermission => _rolePermission ??= new RolePermissionRepository(_context);
         public DbSet<UserRoles> UserRoles => (_context as DefaultContext).UserRoles;
+        public DbSet<RolePermission> RolePermissions => (_context as DefaultContext).RolePermissions;
+        public DbSet<Module> Modules => (_context as DefaultContext).Modules;
+        public DbSet<Role> Roles => (_context as DefaultContext).Roles;
+
+
+
 
     }
 }
