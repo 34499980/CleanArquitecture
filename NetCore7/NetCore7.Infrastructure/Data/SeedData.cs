@@ -39,7 +39,10 @@ namespace NetCore7.Infrastructure.Data
                 new Permission(){Id = (int)Core.Enums.Permissions.CreaateUser, Name = Core.Enums.Permissions.CreaateUser.ToString(), ModuleId = (int)Core.Enums.Modules.Settings},
                 new Permission(){Id = (int)Core.Enums.Permissions.EditUser, Name = Core.Enums.Permissions.EditUser.ToString(), ModuleId = (int)Core.Enums.Modules.Settings},
                 new Permission(){Id = (int)Core.Enums.Permissions.ViewUser, Name = Core.Enums.Permissions.ViewUser.ToString(), ModuleId = (int)Core.Enums.Modules.Settings},
-                new Permission(){Id = (int)Core.Enums.Permissions.DeleteUser, Name = Core.Enums.Permissions.DeleteUser.ToString(), ModuleId = (int)Core.Enums.Modules.Settings}
+                new Permission(){Id = (int)Core.Enums.Permissions.DeleteUser, Name = Core.Enums.Permissions.DeleteUser.ToString(), ModuleId = (int)Core.Enums.Modules.Settings},
+                new Permission(){Id = (int)Core.Enums.Permissions.ViewRoles, Name = Core.Enums.Permissions.ViewRoles.ToString(), ModuleId = (int)Core.Enums.Modules.Settings},
+                new Permission(){Id = (int)Core.Enums.Permissions.EditRoles, Name = Core.Enums.Permissions.EditRoles.ToString(), ModuleId = (int)Core.Enums.Modules.Settings},
+
             });
         }
         private static void SeedRoles(ModelBuilder builder) 
@@ -58,6 +61,8 @@ namespace NetCore7.Infrastructure.Data
                 new RolePermission(){ PermissionId = (int)Core.Enums.Permissions.CreaateUser, RoleId = (int)Core.Enums.Roles.Administrator},
                 new RolePermission(){ PermissionId = (int)Core.Enums.Permissions.EditUser, RoleId = (int)Core.Enums.Roles.Administrator},
                 new RolePermission(){ PermissionId = (int)Core.Enums.Permissions.DeleteUser, RoleId = (int)Core.Enums.Roles.Administrator},
+                new RolePermission(){ PermissionId = (int)Core.Enums.Permissions.ViewRoles, RoleId = (int)Core.Enums.Roles.Administrator},
+                new RolePermission(){ PermissionId = (int)Core.Enums.Permissions.EditRoles, RoleId = (int)Core.Enums.Roles.Administrator},
 
                 new RolePermission(){ PermissionId = (int)Core.Enums.Permissions.ViewUser, RoleId = (int)Core.Enums.Roles.Operador},
                 new RolePermission(){ PermissionId = (int)Core.Enums.Permissions.CreaateUser, RoleId = (int)Core.Enums.Roles.Operador},

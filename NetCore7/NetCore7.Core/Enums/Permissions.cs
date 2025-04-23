@@ -13,7 +13,7 @@ namespace NetCore7.Core.Enums
         EditUser = 3,
         DeleteUser = 4,
 
-        ViewPermission = 100,
-        EditPermission = 101,
+        ViewRoles = 100,
+        EditRoles = 101,
     }
 }

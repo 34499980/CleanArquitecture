@@ -21,7 +21,7 @@ namespace NetCore7.API.Controllers
         }
 
         [HttpGet("{id}")]
-        [HasPermission(Permissions.ViewPermission)]
+        [HasPermission(Permissions.ViewRoles)]
         public async Task<IEnumerable<PermissionSelectedDto>> Get(int id)
         {
             var result = await _permissionService.GetPermissionsByRoleId(id);
@@ -29,7 +29,7 @@ namespace NetCore7.API.Controllers
         }
 
         [HttpGet("GetAllRoles")]
-        [HasPermission(Permissions.ViewUser)]
+        [HasPermission(Permissions.ViewRoles)]
         public async Task<IEnumerable<ItemDto>> GetAllRoles(string? name)
         {
             var result = await _permissionService.GetAllRoles(name);
@@ -37,7 +37,7 @@ namespace NetCore7.API.Controllers
         }
 
         [HttpPut]
-        [HasPermission(Permissions.EditPermission)]
+        [HasPermission(Permissions.EditRoles)]
         public async Task<IActionResult> Put(EditPermissionsDto dto)
         {
             await _permissionService.UpdatePermissions(dto);
