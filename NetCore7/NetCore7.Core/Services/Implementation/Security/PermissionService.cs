@@ -61,8 +61,8 @@ namespace NetCore7.Core.Services
                                                                              x.Permission.ModuleId == module.ModuleId)
                                                                       .Select(q => q.PermissionId).ToList();
 
-                var permissionsToRemoveIds = module.PermissionsIds.Where(x => !permissionsIds.Contains(x)).ToList();
-                var permissionsToAddIds = permissionsIds.Where(x => !module.PermissionsIds.Contains(x)).ToList();
+                var permissionsToAddIds = module.PermissionsIds.Where(x => !permissionsIds.Contains(x)).ToList();
+                var permissionsToRemoveIds = permissionsIds.Where(x => !module.PermissionsIds.Contains(x)).ToList();
 
                 
                 var permissionsToRemove =  _unitOfWork.RolePermissions.Where(x => permissionsToRemoveIds.Contains(x.PermissionId) &&
