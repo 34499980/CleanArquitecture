@@ -22,6 +22,13 @@ namespace NetCore7.Infrastructure.Data.Configurations
             builder.Property(t => t.Name).IsRequired().HasMaxLength(100);
             builder.Property(t => t.Description).HasMaxLength(180);
 
+            builder.HasMany(p => p.RolePermissions)
+               .WithOne(x => x.Role)
+               .HasForeignKey(x => x.RoleId)
+               .OnDelete(DeleteBehavior.Restrict);
+
+
+
         }
     }
 }

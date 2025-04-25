@@ -15,5 +15,6 @@ namespace NetCore7.Core.Enums
 
         ViewRoles = 100,
         EditRoles = 101,
+        CreateRoles = 102,
     }
 }

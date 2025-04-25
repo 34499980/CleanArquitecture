@@ -42,6 +42,7 @@ namespace NetCore7.Infrastructure.Data
                 new Permission(){Id = (int)Core.Enums.Permissions.DeleteUser, Name = Core.Enums.Permissions.DeleteUser.ToString(), ModuleId = (int)Core.Enums.Modules.Settings},
                 new Permission(){Id = (int)Core.Enums.Permissions.ViewRoles, Name = Core.Enums.Permissions.ViewRoles.ToString(), ModuleId = (int)Core.Enums.Modules.Settings},
                 new Permission(){Id = (int)Core.Enums.Permissions.EditRoles, Name = Core.Enums.Permissions.EditRoles.ToString(), ModuleId = (int)Core.Enums.Modules.Settings},
+                new Permission(){Id = (int)Core.Enums.Permissions.CreateRoles, Name = Core.Enums.Permissions.CreateRoles.ToString(), ModuleId = (int)Core.Enums.Modules.Settings},
 
             });
         }
@@ -63,6 +64,7 @@ namespace NetCore7.Infrastructure.Data
                 new RolePermission(){ PermissionId = (int)Core.Enums.Permissions.DeleteUser, RoleId = (int)Core.Enums.Roles.Administrator},
                 new RolePermission(){ PermissionId = (int)Core.Enums.Permissions.ViewRoles, RoleId = (int)Core.Enums.Roles.Administrator},
                 new RolePermission(){ PermissionId = (int)Core.Enums.Permissions.EditRoles, RoleId = (int)Core.Enums.Roles.Administrator},
+                new RolePermission(){ PermissionId = (int)Core.Enums.Permissions.CreateRoles, RoleId = (int)Core.Enums.Roles.Administrator},
 
                 new RolePermission(){ PermissionId = (int)Core.Enums.Permissions.ViewUser, RoleId = (int)Core.Enums.Roles.Operador},
                 new RolePermission(){ PermissionId = (int)Core.Enums.Permissions.CreaateUser, RoleId = (int)Core.Enums.Roles.Operador},

@@ -11,7 +11,8 @@ namespace NetCore7.Core.Dtos
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public  IEnumerable<PermissionSelectedDto> Permissions { get; set; }
+
+        public IEnumerable<PermissionSelectedDto> Permissions { get; set; }
         public bool Selected { get; set; }
     }
 }

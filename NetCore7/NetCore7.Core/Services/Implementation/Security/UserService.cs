@@ -156,7 +156,7 @@ namespace NetCore7.Core.Services
             var entity = await _unitOfWork.Users.FirstOrDefault(x => x.Email == email);
 
 
-            return new ImageDto() { Image = entity.Image };
+            return !string.IsNullOrEmpty(entity.Image)? new ImageDto() { Image = entity.Image } : null;
         }
     }
 }

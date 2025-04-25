@@ -8,6 +8,8 @@ namespace NetCore7.Core.Dtos
 {
     public class EditPermissionsDto
     {
+        public string Name { get; set; }
+        public string Description { get; set; }
         public int RoleId { get; set; }
         public IEnumerable<EditModuleDto> Modules { get; set; } 
         

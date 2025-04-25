@@ -24,18 +24,19 @@ namespace NetCore7.Core.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<ItemDto>> GetAllRoles(string name)
+        public async Task<IEnumerable<ItemExtendedDto>> GetAllRoles(string name)
         {
             var entities = _unitOfWork.Roles.Where(x => string.IsNullOrEmpty(name) || x.Name.Contains(name))
-                                            .Select(x => new ItemDto()
+                                            .Select(x => new ItemExtendedDto()
                                                     {
                                                         Id = x.Id,
-                                                        Description = x.Name
+                                                        Name = x.Name,
+                                                        Description = x.Description
                                                     }).ToList();
             return entities;
         }
 
-        public async Task<IEnumerable<PermissionSelectedDto>> GetPermissionsByRoleId(int roleId)
+        public async Task<IEnumerable<PermissionSelectedDto>> GetPermissionsByRoleId(string? roleId)
         {
             var entity = _unitOfWork.Modules.Select(m => new PermissionSelectedDto()
                                                     {
@@ -45,9 +46,9 @@ namespace NetCore7.Core.Services
                                                         {
                                                             Id = p.Id,
                                                             Name = p.Name,
-                                                            Selected = p.RolePermissions.Any(x => x.RoleId == roleId)
+                                                            Selected = !string.IsNullOrEmpty(roleId)? p.RolePermissions.Any(x => x.RoleId == int.Parse(roleId)) : false
                                                         }).ToList(),
-                                                        Selected = m.Permissions.Any(x =>  _unitOfWork.RolePermissions.Select(z => z.PermissionId).Contains(x.Id))
+                                                        Selected = !string.IsNullOrEmpty(roleId)? m.Permissions.Any(x =>  _unitOfWork.RolePermissions.Select(z => z.PermissionId).Contains(x.Id)) : false
                                                     }).ToList();
 
             return _mapper.Map<IEnumerable<PermissionSelectedDto>>(entity);
@@ -55,6 +56,12 @@ namespace NetCore7.Core.Services
         }
         public async Task UpdatePermissions(EditPermissionsDto dto)
         {
+            var roleEntity = _unitOfWork.Roles.FirstOrDefault(x => x.Id == dto.RoleId);
+            if(roleEntity.Description != dto.Description)
+            {
+                roleEntity.Description = dto.Description;
+                _unitOfWork.Roles.Update(roleEntity);
+            }
             foreach (var module in dto.Modules)
             {
                 var permissionsIds =  _unitOfWork.RolePermissions.Where(x => x.RoleId == dto.RoleId &&
@@ -83,6 +90,40 @@ namespace NetCore7.Core.Services
             }
             await _unitOfWork.CommitAsync();
         }
+        public async Task AddRolePermissions(EditPermissionsDto dto)
+        {
+            Role? roleEntity;
+            if (string.IsNullOrEmpty(dto.Name) || !dto.Modules.Any()) throw new Exception("Error en la carga de datos"); 
+             roleEntity =  _unitOfWork.Roles.FirstOrDefault(x => x.Name == dto.Name);
+            if (roleEntity != null) throw new Exception("Ya existe el rol");
+
+            roleEntity = new Role()
+            {
+                Name = dto.Name,
+                Description = dto.Description,
+                RolePermissions = new List<RolePermission>()
+            };
+
+            foreach (var module in dto.Modules)
+            {      
+                RolePermission entity;
+                foreach (var permissionId in module.PermissionsIds.Distinct())
+                {
+                    entity = new RolePermission()
+                    {
+                        PermissionId = permissionId
+                       
+                    };
+                    roleEntity.RolePermissions.Add(entity);
+                }
+            }
+            _unitOfWork.Roles.Add(roleEntity);
+
+            await _unitOfWork.CommitAsync();
+        }
 
     }
+
 }
+   
+
