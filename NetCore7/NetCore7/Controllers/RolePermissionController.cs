@@ -29,7 +29,7 @@ namespace NetCore7.API.Controllers
         }
 
         [HttpGet("GetAllRoles")]
-        [HasPermission(Permissions.ViewRoles)]
+        [HasPermission(Permissions.ViewRoles, Permissions.ViewUser)]
         public async Task<IEnumerable<ItemExtendedDto>> GetAllRoles(string? name)
         {
             var result = await _permissionService.GetAllRoles(name);
